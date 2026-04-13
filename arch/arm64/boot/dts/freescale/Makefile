@@ -883,7 +883,8 @@ dtb-$(CONFIG_ARCH_MXC) += imx95-19x19-verdin-root.dtb imx95-19x19-verdin-inmate.
 dtb-$(CONFIG_ARCH_MXC) += imx95-var-dart-dt8mcustomboard.dtb \
 			  imx95-var-dart-sonata.dtb \
 			  imx95-var-dart-dt8mcustomboard-m7.dtb \
-			  imx95-var-dart-sonata-m7.dtb
+			  imx95-var-dart-sonata-m7.dtb \
+			  imx95-var-dart-dxone.dtb
 
 imx95-var-dart-sonata-neutron-dtbs := imx95-var-dart-sonata.dtb imx95-var-dart-neutron.dtbo
 dtb-$(CONFIG_ARCH_MXC) += imx95-var-dart-sonata-neutron.dtb
