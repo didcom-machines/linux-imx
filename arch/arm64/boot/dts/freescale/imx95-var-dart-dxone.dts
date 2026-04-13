@@ -1,0 +1,60 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+/*
+ * Copyright 2023 NXP
+ * Copyright 2024-2025 Variscite Ltd.
+ * Copyright 2026 Grupo Tecnológico Didcom S.A. de C.V.
+ */
+
+#include "imx95-var-dart-sonata.dts"
+
+/ {
+	model = "Variscite DART-MX95 on DXOne Board 0.1";
+
+	gpio-keys {
+		status = "disabled";
+	};
+};
+
+&enetc_port2 {
+	status = "disabled";
+};
+
+&lpi2c3 {
+	pca9534: gpio@22 {
+		status = "disabled";
+	};
+};
+
+
+&ov5640_mipi0 {
+	status = "disabled";
+};
+
+&ov5640_mipi1 {
+	status = "disabled";
+};
+
+&lpi2c8 {
+	st33ktpm2xi2c: st33ktpm2xi2c@2e {
+		status = "disabled";
+	};
+};
+
+&pca6408_1 {
+	gpio-line-names = "HDMI1_PLUG", "HDMI2_PLUG", "GPIO_IN_FREE", "DIN0",
+			  "DIN1", "DIN2", "DIN3", "DIN4";
+};
+
+&pca6408_2 {
+	gpio-line-names = "", "", "", "",
+			  "DOUT0", "DOUT1", "DOUT2", "DOUT3";
+};
+
+
+&pcie1 {
+	status = "disabled";
+};
+
+&scmi_bbm {
+	status = "disabled";
+};
