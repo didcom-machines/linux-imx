@@ -34,10 +34,8 @@
 	status = "disabled";
 };
 
-&lpi2c8 {
-	st33ktpm2xi2c: st33ktpm2xi2c@2e {
-		status = "disabled";
-	};
+&st33ktpm2xi2c {
+	status = "disabled";
 };
 
 &pca6408_1 {
