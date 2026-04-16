@@ -143,7 +143,7 @@
 		height-mm = <87>;
 		label = "hdmi-1";
 		data-mapping = "vesa-24";
-		status = "okay";
+		status = "disabled";
 
 		panel-timing {
 			clock-frequency = <74250000>;
@@ -183,7 +183,7 @@
 		};
 
 		simple-audio-card,codec {
-			sound-dai = <&lvds1_hdmi_codec>;
+			sound-dai = <&it6263_primary>;
 		};
 	};
 
@@ -249,6 +249,17 @@
 		compatible = "linux,spdif-dit";  // Standard dummy codec
 		#sound-dai-cells = <0>;
 		status = "okay";
+	};
+
+	hdmi_connector_primary: hdmi-connector-primary {
+		compatible = "hdmi-connector";
+		type = "a";
+
+		port {
+			hdmi_in_primary: endpoint {
+				remote-endpoint = <&it6263_out>;
+			};
+		};
 	};
 
 	reg_usdhc2_vmmc: regulator-vmmc-usdhc2 {
@@ -430,7 +441,7 @@
 			reg = <1>;
 
 			lvds0_out: endpoint {
-				remote-endpoint = <&panel_in>;
+				remote-endpoint = <&it6263_lvds_in>;
 			};
 		};
 	};
@@ -556,6 +567,44 @@
 	pinctrl-0 = <&pinctrl_lpi2c4>;
 	pinctrl-1 = <&pinctrl_lpi2c4>;
 	status = "okay";
+
+	it6263_primary: hdmi-bridge@4c {
+		compatible = "ite,it6263";
+		reg = <0x4c>;
+		data-mapping = "vesa-24";
+		ivdd-supply = <&reg_1p8v>;
+		ovdd-supply = <&reg_3p3v>;
+		txavcc18-supply = <&reg_1p8v>;
+		txavcc33-supply = <&reg_3p3v>;
+		pvcc1-supply = <&reg_1p8v>;
+		pvcc2-supply = <&reg_1p8v>;
+		avcc-supply = <&reg_3p3v>;
+		anvdd-supply = <&reg_1p8v>;
+		apvdd-supply = <&reg_1p8v>;
+		#sound-dai-cells = <0>;
+		status = "okay";
+
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+				reg = <0>;
+
+				it6263_lvds_in: endpoint {
+					remote-endpoint = <&lvds0_out>;
+				};
+			};
+
+			port@2 {
+				reg = <2>;
+
+				it6263_out: endpoint {
+					remote-endpoint = <&hdmi_in_primary>;
+				};
+			};
+		};
+	};
 };
 
 &lpi2c8 {
