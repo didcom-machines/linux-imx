@@ -840,6 +840,8 @@
 		fsl,pins = <
 			/* GPIO Expanders shared IRQ */
 			IMX95_PAD_GPIO_IO37__GPIO5_IO_BIT17				0x31e
+			/* IT6263 reset via PDM_CLK repurposed as GPIO1_IO8 */
+			IMX95_PAD_PDM_CLK__AONMIX_TOP_GPIO1_IO_BIT8			0x31e
 		>;
 	};
 
