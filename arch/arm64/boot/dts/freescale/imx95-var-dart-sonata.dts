@@ -166,27 +166,6 @@
 		};
 	};
 
-	sound_lvds1_hdmi: sound-lvds1-i2s {
-		compatible = "simple-audio-card";
-		simple-audio-card,name = "HDMI-1-Audio";
-		simple-audio-card,format = "i2s";
-
-		simple-audio-card,bitclock-master = <&dai_cpu2>;
-		simple-audio-card,frame-master = <&dai_cpu2>;
-		
-		status = "okay";
-
-		dai_cpu2: simple-audio-card,cpu {
-			sound-dai = <&sai4>;
-			dai-tdm-slot-num = <2>;
-			dai-tdm-slot-width = <32>;
-		};
-
-		simple-audio-card,codec {
-			sound-dai = <&it6263_primary>;
-		};
-	};
-
 	lvds1_hdmi_codec: lvds1-hdmi-codec {
 		compatible = "linux,spdif-dit";  // Standard dummy codec
 		#sound-dai-cells = <0>;
@@ -383,7 +362,7 @@
 &flexcan1 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_flexcan1>;
-	status = "okay";
+	status = "disabled";
 };
 
 &gpio1 {
@@ -571,17 +550,8 @@
 	it6263_primary: hdmi-bridge@4c {
 		compatible = "ite,it6263";
 		reg = <0x4c>;
+		reset-gpios = <&gpio1 8 GPIO_ACTIVE_LOW>;
 		data-mapping = "vesa-24";
-		ivdd-supply = <&reg_1p8v>;
-		ovdd-supply = <&reg_3p3v>;
-		txavcc18-supply = <&reg_1p8v>;
-		txavcc33-supply = <&reg_3p3v>;
-		pvcc1-supply = <&reg_1p8v>;
-		pvcc2-supply = <&reg_1p8v>;
-		avcc-supply = <&reg_3p3v>;
-		anvdd-supply = <&reg_1p8v>;
-		apvdd-supply = <&reg_1p8v>;
-		#sound-dai-cells = <0>;
 		status = "okay";
 
 		ports {
@@ -859,7 +829,7 @@
 				   <361267200>,    // AUDIOPLL2
 				   <12288000>;     // SAI4
 	fsl,sai-mclk-direction-output;
-	status = "okay";
+	status = "disabled";
 };
 
 &scmi_iomuxc {
@@ -905,7 +875,7 @@
 
 	pinctrl_flexcan1: flexcan1grp {
 		fsl,pins = <
-			IMX95_PAD_PDM_CLK__AONMIX_TOP_CAN1_TX				0x39e
+			IMX95_PAD_PDM_CLK__AONMIX_TOP_GPIO1_IO_BIT8			0x31e
 			IMX95_PAD_PDM_BIT_STREAM0__AONMIX_TOP_CAN1_RX			0x39e
 		>;
 	};
