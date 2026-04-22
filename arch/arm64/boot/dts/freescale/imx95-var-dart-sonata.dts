@@ -159,11 +159,6 @@
 			vsync-active = <1>;              // Active high
 			de-active = <1>;                 // Data Enable active high
 		};
-		port {
-			panel_in: endpoint {
-				remote-endpoint = <&lvds0_out>;
-			};
-		};
 	};
 
 	lvds1_hdmi_codec: lvds1-hdmi-codec {
@@ -362,7 +357,7 @@
 &flexcan1 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_flexcan1>;
-	status = "disabled";
+	status = "okay";
 };
 
 &gpio1 {
@@ -550,7 +545,7 @@
 	it6263_primary: hdmi-bridge@4c {
 		compatible = "ite,it6263";
 		reg = <0x4c>;
-		reset-gpios = <&gpio1 8 GPIO_ACTIVE_LOW>;
+		reset-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
 		data-mapping = "vesa-24";
 		status = "okay";
 
@@ -566,8 +561,8 @@
 				};
 			};
 
-			port@2 {
-				reg = <2>;
+			port@1 {
+				reg = <1>;
 
 				it6263_out: endpoint {
 					remote-endpoint = <&hdmi_in_primary>;
@@ -840,8 +835,8 @@
 		fsl,pins = <
 			/* GPIO Expanders shared IRQ */
 			IMX95_PAD_GPIO_IO37__GPIO5_IO_BIT17				0x31e
-			/* IT6263 reset via PDM_CLK repurposed as GPIO1_IO8 */
-			IMX95_PAD_PDM_CLK__AONMIX_TOP_GPIO1_IO_BIT8			0x31e
+			/* IT6263 reset */
+			IMX95_PAD_PDM_BIT_STREAM1__AONMIX_TOP_GPIO1_IO_BIT10	0x31e
 		>;
 	};
 
@@ -877,7 +872,7 @@
 
 	pinctrl_flexcan1: flexcan1grp {
 		fsl,pins = <
-			IMX95_PAD_PDM_CLK__AONMIX_TOP_GPIO1_IO_BIT8			0x31e
+			IMX95_PAD_PDM_CLK__AONMIX_TOP_CAN1_TX					0x39e
 			IMX95_PAD_PDM_BIT_STREAM0__AONMIX_TOP_CAN1_RX			0x39e
 		>;
 	};
