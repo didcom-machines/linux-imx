@@ -13,6 +13,12 @@
 		     "fsl,imx95";
 };
 
+&netc_emdio {
+	ethphy1: ethernet-phy@1 {
+		max-speed = <100>;
+	};
+};
+
 &enetc_port2 {
 	status = "disabled";
 };
