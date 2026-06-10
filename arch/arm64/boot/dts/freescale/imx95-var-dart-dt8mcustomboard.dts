@@ -13,10 +13,12 @@
 		     "fsl,imx95";
 };
 
-&netc_emdio {
-	ethphy1: ethernet-phy@1 {
-		max-speed = <100>;
-	};
+&ethphy1 {
+	max-speed = <100>;
+};
+
+&enetc_port1 {
+	status = "disabled";
 };
 
 &enetc_port2 {
@@ -52,10 +54,26 @@
 	>;
 };
 
-&reg_phy1_vddio {
-	/delete-property/ enable-active-high;
-};
 
 &pcie0 {
 	status = "disabled";
+};
+
+&ptn5150 {
+	status = "disabled";
+};
+
+&usb3_dwc3 {
+	dr_mode = "host";
+	/delete-property/ usb-role-switch;
+	/delete-property/ role-switch-default-mode;
+};
+
+&typec_con {
+	power-role = "source";
+	data-role = "host";
+	/delete-property/ try-power-role;
+	/delete-property/ sink-pdos;
+	/delete-property/ op-sink-microwatt;
+	source-pdos = <PDO_FIXED(5000, 3000, 0)>;
 };

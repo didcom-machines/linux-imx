@@ -54,7 +54,7 @@
 		label = "USB-C";
 		power-role = "dual";
 		data-role = "dual";
-		try-power-role = "sink";
+		try-power-role = "source";
 		source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
 		sink-pdos = <PDO_FIXED(5000, 0, PDO_FIXED_USB_COMM)>;
 		op-sink-microwatt = <0>;
@@ -530,7 +530,7 @@
 		};
 	};
 
-	typec@3d {
+	ptn5150: typec@3d {
 		compatible = "nxp,ptn5150";
 		reg = <0x3d>;
 		pinctrl-names = "default";
@@ -1028,6 +1028,7 @@
 	srp-disable;
 	adp-disable;
 	usb-role-switch;
+	role-switch-default-mode = "host";
 	snps,dis-u1-entry-quirk;
 	snps,dis-u2-entry-quirk;
 	status = "okay";
