@@ -517,6 +517,7 @@ bool stmmac_eee_init(struct stmmac_priv *priv)
 	netdev_dbg(priv->dev, "Energy-Efficient Ethernet initialized\n");
 	return true;
 }
+EXPORT_SYMBOL_GPL(stmmac_eee_init);
 
 /* stmmac_get_tx_hwtstamp - get HW TX timestamps
  * @priv: driver private structure
@@ -7498,6 +7499,7 @@ void stmmac_fpe_apply(struct stmmac_priv *priv)
 			stmmac_fpe_verify_timer_arm(fpe_cfg);
 	}
 }
+EXPORT_SYMBOL_GPL(stmmac_fpe_apply);
 
 static int stmmac_xdp_rx_timestamp(const struct xdp_md *_ctx, u64 *timestamp)
 {
