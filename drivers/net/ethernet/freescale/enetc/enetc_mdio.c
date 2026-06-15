@@ -52,7 +52,7 @@ static int enetc_mdio_wait_complete(struct enetc_mdio_priv *mdio_priv)
 	bool is_busy;
 
 	return readx_poll_timeout(enetc_mdio_is_busy, mdio_priv,
-				  is_busy, !is_busy, 10, 10 * 1000);
+				  is_busy, !is_busy, 10, 100 * 1000);
 }
 
 int enetc_mdio_write_c22(struct mii_bus *bus, int phy_id, int regnum,

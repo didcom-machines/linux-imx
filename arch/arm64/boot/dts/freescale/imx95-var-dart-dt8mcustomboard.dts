@@ -15,10 +15,9 @@
 
 &ethphy1 {
 	max-speed = <100>;
-};
-
-&enetc_port1 {
-	status = "disabled";
+	reset-gpios = <&pca6408_2 7 GPIO_ACTIVE_LOW>;
+	reset-assert-us = <100000>;
+	reset-deassert-us = <200000>;
 };
 
 &enetc_port2 {
